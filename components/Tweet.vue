@@ -8,10 +8,12 @@
         <div class="col-10">
           <div class="row">
             <div class="col-10">
-              <span class="name">
+              <nuxt-link class="link name" :to="userlink">
                 {{ name }}
-              </span>
-              <span class="username"> @{{ username }} </span>
+              </nuxt-link>
+              <nuxt-link class="link" :to="userlink">
+                @{{ username }}
+              </nuxt-link>
               <span class="time">
                 25 mins ago
               </span>
@@ -43,6 +45,11 @@ export default {
       type: String,
       default: 'username'
     }
+  },
+  computed: {
+    userlink() {
+      return { name: 'users-id', params: { id: this.username } }
+    }
   }
 }
 </script>
@@ -50,6 +57,10 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin: 0.5em 0;
+
+  .link {
+    color: #000;
+  }
 
   .name {
     font-size: 1.5em;
