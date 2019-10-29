@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     name() {
-      return 'Bob Bobbin'
+      return 'Bob Bobbins'
     },
     username() {
       return 'bob'
