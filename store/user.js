@@ -1,14 +1,14 @@
 export const state = () => ({
-  signin: true,
-  username: 'bob',
-  name: 'Bob Bobbins'
+  signin: false,
+  username: '',
+  name: ''
 })
 
 export const mutations = {
-  signin(state, username, name) {
+  signin(state, user) {
     state.signin = true
-    state.username = username
-    state.name = name
+    state.username = user.username
+    state.name = user.name
   },
   signout(state) {
     state.signin = false
