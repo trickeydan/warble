@@ -33,6 +33,18 @@ export default {
     username() {
       return 'bob'
     }
+  },
+  head() {
+    return {
+      title: this.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.name + ' on Warble'
+        }
+      ]
+    }
   }
 }
 </script>

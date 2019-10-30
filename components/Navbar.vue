@@ -24,7 +24,7 @@
             >
             <b-dropdown-item @click="signout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item v-else href="#">Log In</b-nav-item>
+          <b-nav-item v-else :to="{ name: 'login' }">Log In</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
