@@ -12,5 +12,7 @@ export const mutations = {
   },
   signout(state) {
     state.signin = false
+    state.username = ''
+    state.name = ''
   }
 }

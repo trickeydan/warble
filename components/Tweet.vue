@@ -15,12 +15,12 @@
               <nuxt-link class="link" :to="userlink">
                 @{{ username }}
               </nuxt-link>
-              <span class="time">
+              <!-- <span class="time">
                 25 mins ago
-              </span>
+              </span> -->
             </div>
             <div class="col-2">
-              <b-btn>Follow</b-btn>
+              <b-btn v-if="user.username != username">Follow</b-btn>
             </div>
           </div>
           <hr />
@@ -50,6 +50,9 @@ export default {
   computed: {
     userlink() {
       return { name: 'users-id', params: { id: this.username } }
+    },
+    user() {
+      return this.$store.state.user
     }
   }
 }

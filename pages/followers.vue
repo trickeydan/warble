@@ -2,17 +2,17 @@
   <div class="container main">
     <div class="row">
       <div class="col-md-12">
-        <h1>Feed</h1>
+        <h1>My Followers</h1>
         <div v-if="loading" class="loading">
-          Loading tweets...
+          Loading followers...
         </div>
         <div v-if="error" class="error">Error: {{ error }}</div>
         <Tweet
-          v-for="tweet in tweets"
-          :key="tweet.id"
-          :name="tweet.name"
-          :username="tweet.username"
-          :content="tweet.message"
+          v-for="follower in followers"
+          :key="follower.id"
+          :name="follower.name"
+          :username="follower.username"
+          content=""
         />
       </div>
     </div>
@@ -42,8 +42,13 @@ export default {
   data() {
     return {
       loading: false,
-      tweets: [],
+      followers: [],
       error: null
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     }
   },
   watch: {
@@ -58,21 +63,22 @@ export default {
   methods: {
     fetchData() {
       this.error = null
-      this.tweets = []
+      this.followers = []
       this.loading = true
 
       this.$axios
-        .get('getFeed?username=bob')
+        .get('getFollowers?username=' + this.user.username)
         .then((response) => {
-          const rawTweets = response.data
+          const rawFollowers = response.data
 
-          rawTweets.forEach((tweet) => {
-            this.$axios
-              .get('getUser?username=' + tweet.username)
-              .then((response) => {
-                tweet.name = response.data.name
-                this.tweets.push(tweet)
-              })
+          rawFollowers.forEach((follower) => {
+            this.$axios.get('getUser?username=' + follower).then((response) => {
+              const followerData = {
+                username: follower,
+                name: response.data.name
+              }
+              this.followers.push(followerData)
+            })
           })
 
           this.loading = false

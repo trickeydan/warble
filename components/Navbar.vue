@@ -1,14 +1,17 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand>Warble</b-navbar-brand>
+      <b-navbar-brand to="/">Warble</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Create</b-nav-item>
-          <b-nav-item href="#">Browse</b-nav-item>
+          <b-nav-item href="#">Write Tweet</b-nav-item>
+          <b-nav-item v-if="user.signin" to="/followers"
+            >My Followers</b-nav-item
+          >
+          <b-nav-item v-if="user.signin" href="#">My Followings</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

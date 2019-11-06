@@ -54,14 +54,15 @@ export default {
       this.loading = true
 
       this.$axios
-        .get('getTweets?username=' + this.$route.params.id)
+        .get('getUser?username=' + this.$route.params.id)
         .then((response) => {
-          this.tweets = response.data
+          this.username = response.data.username
+          this.name = response.data.name
+
           this.$axios
-            .get('getUser?username=' + this.$route.params.id)
+            .get('getTweets?username=' + this.$route.params.id)
             .then((response) => {
-              this.username = response.data.username
-              this.name = response.data.name
+              this.tweets = response.data
               this.loading = false
             })
             .catch((response) => {
@@ -69,7 +70,10 @@ export default {
             })
         })
         .catch((response) => {
-          this.error = response.toString()
+          this.error = 'Unable to load user.'
+          this.name = 'User Not Found'
+          this.username = 'notfound'
+          this.loading = false
         })
     }
   },
