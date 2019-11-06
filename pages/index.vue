@@ -46,6 +46,11 @@ export default {
       error: null
     }
   },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
   watch: {
     // call again the method if the route changes
     $route: 'fetchData'
@@ -62,7 +67,9 @@ export default {
       this.loading = true
 
       this.$axios
-        .get('getFeed?username=bob')
+        .post('getFeed', {
+          username: this.user.username
+        })
         .then((response) => {
           const rawTweets = response.data
 
