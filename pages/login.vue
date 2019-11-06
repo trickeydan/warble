@@ -7,13 +7,14 @@
           <label for="username">Username</label>
           <input
             id="username"
+            v-model="username"
             type="text"
             class="form-control"
             aria-describedby="usernameHelp"
             placeholder="Enter username"
           />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="password">Password</label>
           <input
             id="password"
@@ -21,7 +22,7 @@
             class="form-control"
             placeholder="Password"
           />
-        </div>
+        </div> -->
         <button class="btn btn-primary" @click="signin">Login</button>
       </div>
       <div class="col-md-3">
@@ -46,13 +47,24 @@ export default {
       ]
     }
   },
+  data() {
+    return {
+      username: ''
+    }
+  },
   methods: {
     signin() {
-      this.$store.commit('user/signin', {
-        name: 'Bob Bobbins',
-        username: 'bob'
-      })
-      this.$nuxt.$router.replace({ path: '/' })
+      this.$axios
+        .$get('getUser?username=' + this.username)
+        .then((response) => {
+          // Check response contains data
+          console.log(this)
+          this.$store.commit('user/signin', response)
+          this.$nuxt.$router.replace({ path: '/' })
+        })
+        .catch(function(response) {
+          // console.log(response)
+        })
     }
   }
 }
