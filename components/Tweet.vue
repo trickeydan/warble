@@ -3,7 +3,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col-2">
-          <img :src="require(`../static/${username}.jpg`)" />
+          <!-- Customise per user. -->
+          <img :src="require(`../static/bob.jpg`)" />
         </div>
         <div class="col-10">
           <div class="row">

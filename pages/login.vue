@@ -3,6 +3,9 @@
     <div class="row">
       <div class="col-md-9">
         <h1>Login</h1>
+        <div v-if:="error">
+          {{ error }}
+        </div>
         <div class="form-group">
           <label for="username">Username</label>
           <input
@@ -49,7 +52,8 @@ export default {
   },
   data() {
     return {
-      username: ''
+      username: '',
+      error: null
     }
   },
   methods: {
@@ -62,8 +66,8 @@ export default {
           this.$store.commit('user/signin', response)
           this.$nuxt.$router.replace({ path: '/' })
         })
-        .catch(function(response) {
-          // console.log(response)
+        .catch((response) => {
+          this.error = response.toString()
         })
     }
   }

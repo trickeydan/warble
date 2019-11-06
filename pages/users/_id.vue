@@ -6,7 +6,17 @@
           <span class="name">{{ name }}</span>
           <span class="username">@{{ username }}</span>
         </div>
-        <Tweet name="Bob Bobbin" username="bob" content="Yeet" />
+        <div v-if="loading" class="loading">
+          Loading tweets...
+        </div>
+        <div v-if="error" class="error">Error: {{ error }}</div>
+        <Tweet
+          v-for="tweet in tweets"
+          :key="tweet.id"
+          :name="name"
+          :username="username"
+          :content="tweet.message"
+        />
       </div>
       <div class="col-md-3">
         <h2>Trending Topics</h2>
@@ -22,16 +32,48 @@ export default {
   components: {
     Tweet
   },
-  validate({ params }) {
-    // Look up user in DB here
-    return true
+  data() {
+    return {
+      loading: false,
+      tweets: [],
+      name: 'Loading',
+      username: 'Loading',
+      error: null
+    }
   },
-  computed: {
-    name() {
-      return 'Bob Bobbins'
-    },
-    username() {
-      return 'bob'
+  watch: {
+    // call again the method if the route changes
+    $route: 'fetchData'
+  },
+  created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.error = null
+      this.tweets = []
+      this.loading = true
+
+      this.$axios
+        .get('getTweets?username=' + this.$route.params.id)
+        .then((response) => {
+          this.tweets = response.data
+          this.$axios
+            .get('getUser?username=' + this.$route.params.id)
+            .then((response) => {
+              this.username = response.data.username
+              this.name = response.data.name
+              this.loading = false
+            })
+            .catch((response) => {
+              this.error = response.toString()
+            })
+        })
+        .catch((response) => {
+          this.error = response.toString()
+        })
     }
   },
   head() {

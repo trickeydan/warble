@@ -7,8 +7,13 @@
           Loading tweets...
         </div>
         <div v-if="error" class="error">Error: {{ error }}</div>
-        <Tweet v-for:="tweet in tweets" name:="tweet.name"
-        username:="tweet.username" content:="tweet.content" />
+        <Tweet
+          v-for="tweet in tweets"
+          :key="tweet.id"
+          :name="tweet.name"
+          :username="tweet.username"
+          :content="tweet.message"
+        />
       </div>
       <div class="col-md-3">
         <h2>Trending Topics</h2>
@@ -62,11 +67,20 @@ export default {
       this.$axios
         .get('getTweets?username=bob')
         .then((response) => {
+          const rawTweets = response.data
+
+          rawTweets.forEach((tweet) => {
+            this.$axios
+              .get('getUser?username=' + tweet.username)
+              .then((response) => {
+                tweet.name = response.data.name
+                this.tweets.push(tweet)
+              })
+          })
+
           this.loading = false
-          this.tweets = response
         })
         .catch((response) => {
-          this.loading = false
           this.error = response.toString()
         })
     }
