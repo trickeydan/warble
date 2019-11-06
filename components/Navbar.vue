@@ -11,7 +11,9 @@
           <b-nav-item v-if="user.signin" to="/followers"
             >My Followers</b-nav-item
           >
-          <b-nav-item v-if="user.signin" href="#">My Followings</b-nav-item>
+          <b-nav-item v-if="user.signin" to="/following"
+            >My Followings</b-nav-item
+          >
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -44,6 +46,7 @@ export default {
   methods: {
     signout() {
       this.$store.commit('user/signout')
+      this.$nuxt.$router.replace({ path: '/' })
     }
   }
 }

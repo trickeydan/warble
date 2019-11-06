@@ -2,22 +2,22 @@
   <div class="container main">
     <div class="row">
       <div class="col-md-12">
-        <h1>My Followers</h1>
+        <h1>My Followings</h1>
         <div v-if="loading" class="loading">
-          Loading followers...
+          Loading followings...
         </div>
         <div v-if="error" class="error">Error: {{ error }}</div>
-        <span v-if="followers && followers.length > 0">
-          You are being followed by:
+        <span v-if="followings && followings.length > 0">
+          You are following:
         </span>
-        <span v-if="followers.length == 0">
-          Nobody is following you :(
+        <span v-if="followings.length == 0">
+          You are not following anybody
         </span>
         <Tweet
-          v-for="follower in followers"
-          :key="follower.id"
-          :name="follower.name"
-          :username="follower.username"
+          v-for="followings in followings"
+          :key="followings.id"
+          :name="followings.name"
+          :username="followings.username"
           content=""
         />
       </div>
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       loading: false,
-      followers: [],
+      followings: [],
       error: null
     }
   },
@@ -69,21 +69,21 @@ export default {
   methods: {
     fetchData() {
       this.error = null
-      this.followers = []
+      this.followings = []
       this.loading = true
 
       this.$axios
-        .get('getFollowers?username=' + this.user.username)
+        .get('getFollowing?username=' + this.user.username)
         .then((response) => {
-          const rawFollowers = response.data
+          const rawFollowings = response.data
 
-          rawFollowers.forEach((follower) => {
+          rawFollowings.forEach((follower) => {
             this.$axios.get('getUser?username=' + follower).then((response) => {
               const followerData = {
                 username: follower,
                 name: response.data.name
               }
-              this.followers.push(followerData)
+              this.followings.push(followerData)
             })
           })
 
