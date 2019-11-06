@@ -1,7 +1,7 @@
 <template>
   <div class="container main">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <div class="names">
           <span class="name">{{ name }}</span>
           <span class="username">@{{ username }}</span>
@@ -17,9 +17,6 @@
           :username="username"
           :content="tweet.message"
         />
-      </div>
-      <div class="col-md-3">
-        <h2>Trending Topics</h2>
       </div>
     </div>
   </div>

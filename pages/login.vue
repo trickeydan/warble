@@ -1,7 +1,7 @@
 <template>
   <div class="container main">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <h1>Login</h1>
         <div v-if:="error">
           {{ error }}
@@ -27,9 +27,6 @@
           />
         </div> -->
         <button class="btn btn-primary" @click="signin">Login</button>
-      </div>
-      <div class="col-md-3">
-        <h2>Trending Topics</h2>
       </div>
     </div>
   </div>
