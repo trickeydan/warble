@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Write Tweet</b-nav-item>
+          <b-nav-item to="/tweet">Write Tweet</b-nav-item>
           <b-nav-item v-if="user.signin" to="/followers"
             >My Followers</b-nav-item
           >
@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     signout() {
+      this.message = 'sent'
       this.$store.commit('user/signout')
       this.$nuxt.$router.replace({ path: '/' })
     }
