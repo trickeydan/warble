@@ -93,7 +93,8 @@ export default {
           this.error = response.toString()
         })
     }
-  }
+  },
+  middleware: 'authenticated'
 }
 </script>
 

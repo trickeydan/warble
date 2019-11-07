@@ -14,10 +14,10 @@
           You are not following anybody
         </span>
         <Tweet
-          v-for="followings in followings"
-          :key="followings.id"
-          :name="followings.name"
-          :username="followings.username"
+          v-for="following in followings"
+          :key="following.id"
+          :name="following.name"
+          :username="following.username"
           content=""
         />
       </div>
@@ -93,7 +93,8 @@ export default {
           this.error = response.toString()
         })
     }
-  }
+  },
+  middleware: 'authenticated'
 }
 </script>
 

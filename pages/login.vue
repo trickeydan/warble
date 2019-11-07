@@ -59,7 +59,6 @@ export default {
         .$get('getUser?username=' + this.username)
         .then((response) => {
           // Check response contains data
-          console.log(this)
           this.$store.commit('user/signin', response)
           this.$nuxt.$router.replace({ path: '/' })
         })
