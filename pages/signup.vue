@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <h1>Signup</h1>
         <div v-if:="error">
-          {{ error }}
+          An error occurred. Is the username taken?
         </div>
         <div class="form-group">
           <label for="username">Username</label>
