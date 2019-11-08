@@ -16,5 +16,9 @@ export const mutations = {
     state.signin = false
     state.username = ''
     state.name = ''
+    state.following = []
+  },
+  updateFollowing(state, following) {
+    state.following.push(following.follows)
   }
 }

@@ -20,8 +20,8 @@
               </span> -->
             </div>
             <div class="col-2">
-              <b-btn v-if="!user.following.includes(username)">Follow</b-btn>
-              <b-btn v-else class="btn-success">Following</b-btn>
+              <b-btn v-if="following" class="btn-success">Following</b-btn>
+              <b-btn v-else @click="postFollow">Follow</b-btn>
             </div>
           </div>
           <hr />
@@ -54,6 +54,33 @@ export default {
     },
     user() {
       return this.$store.state.user
+    },
+    following() {
+      const isUser = this.user.username === this.username
+      let isFollowing = false
+      for (let i = 0; i < this.user.following.length; i++) {
+        if (this.username === this.user.following[i]) {
+          isFollowing = true
+        }
+      }
+      return isUser || isFollowing
+    }
+  },
+  methods: {
+    postFollow() {
+      if (this.$store.state.user.signin) {
+        this.$axios
+          .post('createFollow', {
+            username: this.user.username,
+            follows: this.username
+          })
+          .then((response) => {
+            this.$store.commit('user/updateFollowing', response.data)
+          })
+          .catch((response) => {})
+      } else {
+        this.$nuxt.$router.replace({ path: '/login' })
+      }
     }
   }
 }

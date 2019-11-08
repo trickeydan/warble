@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Login</h1>
-        <div v-if:="error">
+        <div v-if="error">
           {{ error }}
         </div>
         <div class="form-group">
