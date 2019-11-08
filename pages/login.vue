@@ -62,8 +62,20 @@ export default {
         .$get('getUser?username=' + this.username)
         .then((response) => {
           // Check response contains data
-          this.$store.commit('user/signin', response)
-          this.$nuxt.$router.replace({ path: '/' })
+
+          this.$axios
+            .get('getFollowing?username=' + response.username)
+            .then((responseFollowing) => {
+              this.$store.commit('user/signin', {
+                username: response.username,
+                name: response.name,
+                following: responseFollowing.data
+              })
+              this.$nuxt.$router.replace({ path: '/' })
+            })
+            .catch((response) => {
+              this.error = response.toString()
+            })
         })
         .catch((response) => {
           this.error = response.toString()

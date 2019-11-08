@@ -8,6 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/tweet">Write Tweet</b-nav-item>
+          <b-nav-item v-if="user.signin" to="/explore">Explore</b-nav-item>
           <b-nav-item v-if="user.signin" to="/followers"
             >My Followers</b-nav-item
           >

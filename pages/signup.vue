@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Signup</h1>
-        <div v-if:="error">
+        <p v-if:="error">
           An error occurred. Is the username taken?
-        </div>
+        </p>
         <div class="form-group">
           <label for="username">Username</label>
           <input

@@ -20,7 +20,8 @@
               </span> -->
             </div>
             <div class="col-2">
-              <b-btn v-if="user.username != username">Follow</b-btn>
+              <b-btn v-if="!user.following.includes(username)">Follow</b-btn>
+              <b-btn v-else class="btn-success">Following</b-btn>
             </div>
           </div>
           <hr />

@@ -1,7 +1,8 @@
 export const state = () => ({
   signin: false,
   username: '',
-  name: ''
+  name: '',
+  following: []
 })
 
 export const mutations = {
@@ -9,6 +10,7 @@ export const mutations = {
     state.signin = true
     state.username = user.username
     state.name = user.name
+    state.following = user.following
   },
   signout(state) {
     state.signin = false
