@@ -65,7 +65,11 @@ export default {
         })
         .then((response) => {
           // Check response contains data
-          this.$store.commit('user/signin', response)
+          this.$store.commit('user/signin', {
+            username: response.username,
+            name: response.name,
+            following: []
+          })
           this.$nuxt.$router.replace({ path: '/' })
         })
         .catch((response) => {
