@@ -10,7 +10,7 @@
         <span v-if="followings && followings.length > 0">
           You are following:
         </span>
-        <span v-if="followings.length == 0">
+        <span v-if="followings && followings.length == 0">
           You are not following anybody
         </span>
         <Tweet

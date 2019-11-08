@@ -2,7 +2,7 @@
   <div class="container main">
     <div class="row">
       <div class="col-md-12">
-        <h1>Login</h1>
+        <h1>Signup</h1>
         <div v-if:="error">
           {{ error }}
         </div>
@@ -17,19 +17,18 @@
             placeholder="Enter username"
           />
         </div>
-        <!-- <div class="form-group">
-          <label for="password">Password</label>
+        <div class="form-group">
+          <label for="name">Name</label>
           <input
-            id="password"
-            type="password"
+            id="name"
+            v-model="name"
+            type="text"
             class="form-control"
-            placeholder="Password"
+            aria-describedby="nameHelp"
+            placeholder="Enter name"
           />
-        </div> -->
+        </div>
         <button class="btn btn-primary" @click="signin">Login</button>
-        <button class="btn btn-secondary" to="/signup">
-          No account? Signup
-        </button>
       </div>
     </div>
   </div>
@@ -39,7 +38,7 @@
 export default {
   head() {
     return {
-      title: 'Login',
+      title: 'Signup',
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -53,13 +52,17 @@ export default {
   data() {
     return {
       username: '',
+      name: '',
       error: null
     }
   },
   methods: {
     signin() {
       this.$axios
-        .$get('getUser?username=' + this.username)
+        .$post('createUser', {
+          username: this.username,
+          name: this.name
+        })
         .then((response) => {
           // Check response contains data
           this.$store.commit('user/signin', response)

@@ -67,7 +67,6 @@ export default {
           message: this.message
         })
         .then((response) => {
-          console.log(response.data)
           this.$nuxt.$router.replace({
             name: 'users-id',
             params: { id: this.user.username }
