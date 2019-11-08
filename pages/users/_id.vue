@@ -16,6 +16,7 @@
           :name="name"
           :username="username"
           :content="tweet.message"
+          :datetime="tweet.datetime"
         />
       </div>
     </div>

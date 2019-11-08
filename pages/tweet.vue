@@ -21,6 +21,7 @@
             :name="user.name"
             :username="user.username"
             :content="message"
+            :datetime="new Date().getTime()"
           />
         </div>
       </div>

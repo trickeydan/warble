@@ -15,9 +15,9 @@
               <nuxt-link class="link" :to="userlink">
                 @{{ username }}
               </nuxt-link>
-              <!-- <span class="time">
-                25 mins ago
-              </span> -->
+              <span v-if="datetime > 0" class="time">
+                {{ $moment(dateObject).fromNow() }}
+              </span>
             </div>
             <div class="col-2">
               <b-btn v-if="following" class="btn-success">Following</b-btn>
@@ -46,6 +46,10 @@ export default {
     username: {
       type: String,
       default: 'username'
+    },
+    datetime: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
@@ -64,6 +68,9 @@ export default {
         }
       }
       return isUser || isFollowing
+    },
+    dateObject() {
+      return new Date(this.datetime * 1)
     }
   },
   methods: {
