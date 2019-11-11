@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Signup</h1>
-        <p v-if:="error">
+        <p v-if="error">
           An error occurred. Is the username taken?
         </p>
         <div class="form-group">

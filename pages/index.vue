@@ -7,7 +7,7 @@
           Loading tweets...
         </div>
         <div v-if="error" class="error">Error: {{ error }}</div>
-        <p v-if="tweets && tweets.length == 0">
+        <p v-if="!loading && tweets.length == 0">
           There are no tweets for you to see. Try following someone!
         </p>
         <Tweet
