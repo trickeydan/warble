@@ -34,8 +34,6 @@ Feature list:
 
 Whilst I have made use of other cloud platforms before, this was the first time that I have made use of Microsoft Azure, or function-based applications in a big project. 
 
-Svelte
-
 The first major problem that I encountered was during my first use of the Azure CLI. The CLI is used to deploy both functions and static content to the Azure platform. Unfortunately whilst my operating system is listed as supported, and the CLI tools did install successfully, the CLI crashed with obscure errors on almost every command. I resolved this by developing my functions in the Azure cloud console, and uploading the compiled JavaScript for my frontend using the Storage Explorer. As part of this, I had to upload every file individually and specify the path that it needed to be at.
 
 Whilst using the Azure cloud console to develop my application, I kept encountering issues where I would change settings and the changes would not persist. This would happen some, but not all of time. It would also only occur when changing a pre-existing setting, and not when adding a new setting (such as a function input binding). This is not an issue that I have been able to resolve, as I believe it is caused by consistency synchronisation within Azure. I managed to work around this by only having one tab open on the Azure portal at a time, and deleting and recreating settings if necessary.
@@ -51,3 +49,5 @@ Much of the information on using Azure Functions, especially from Microsoft, use
 ## Time Taken
 
 During this assesment, I recorded a total of 54 hours working on the tasks given. This includes some, but not all of the time that I spent researching how to the Azure platform.
+
+During this coursework, I have learnt a lot about using serverless applications and Azure. It has also been an opportunity for me to learn more about writing frontend applications in JavaScript and making use of state libraries.
