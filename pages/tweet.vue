@@ -14,6 +14,17 @@
             placeholder="Enter message"
           />
         </div>
+        <div class="form-group">
+          <label for="file">Image / Video</label>
+          <input
+            id="file"
+            type="file"
+            class="form-control"
+            aria-describedby="fileHelp"
+            placeholder="Upload image / video"
+            @change="processFile"
+          />
+        </div>
         <button class="btn btn-primary" @click="postTweet">Tweet!</button>
         <div class="preview">
           <h2>Preview</h2>
@@ -52,7 +63,8 @@ export default {
   data() {
     return {
       message: '',
-      error: ''
+      error: '',
+      fileData: false
     }
   },
   computed: {
@@ -62,10 +74,18 @@ export default {
   },
   methods: {
     postTweet() {
+      const reader = new FileReader()
+      if (this.fileData) {
+        // Convert the file to base64 text
+        reader.readAsDataURL(this.fileData)
+      }
+
       this.$axios
         .post('createTweet', {
           username: this.user.username,
-          message: this.message
+          message: this.message,
+          fileData: reader.result,
+          fileName: this.fileData.name
         })
         .then((response) => {
           this.$nuxt.$router.replace({
@@ -76,6 +96,9 @@ export default {
         .catch((response) => {
           this.error = response.toString()
         })
+    },
+    processFile(e) {
+      this.fileData = e.target.files[0]
     }
   },
   middleware: 'authenticated'
