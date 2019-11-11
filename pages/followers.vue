@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-md-12">
         <h1>My Followers</h1>
-        <div v-if="loading" class="loading">
+        <div v-if="loading" class="alert alert-info">
           Loading followers...
         </div>
-        <div v-if="error" class="error">Error: {{ error }}</div>
+        <div v-if="error" class="alert alert-danger">Error: {{ error }}</div>
         <span v-if="followers && followers.length > 0">
           You are being followed by:
         </span>

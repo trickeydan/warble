@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Explore</h1>
-        <div v-if="loading" class="loading">
+        <div v-if="loading" class="alert alert-info">
           Loading tweets...
         </div>
-        <div v-if="error" class="error">Error: {{ error }}</div>
+        <div v-if="error" class="alert alert-danger">Error: {{ error }}</div>
         <p v-if="tweets && tweets.length == 0">
           There are no tweets for you to see. :(
         </p>

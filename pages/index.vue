@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Feed</h1>
-        <div v-if="loading" class="loading">
+        <div v-if="loading" class="alert alert-info">
           Loading tweets...
         </div>
-        <div v-if="error" class="error">Error: {{ error }}</div>
-        <p v-if="!loading && tweets.length == 0">
+        <div v-if="error" class="alert alert-danger">{{ error }}</div>
+        <p v-if="!loading && !error && tweets.length == 0">
           There are no tweets for you to see. Try following someone!
         </p>
         <Tweet
@@ -90,6 +90,7 @@ export default {
         })
         .catch((response) => {
           this.error = response.toString()
+          this.loading = false
         })
     }
   }

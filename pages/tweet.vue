@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Write Tweet</h1>
-        <p v-if="error">{{ error }}</p>
+        <p v-if="error" class="alert alert-danger">{{ error }}</p>
         <div class="form-group">
           <label for="message">Write your message</label>
           <textarea

@@ -30,6 +30,8 @@ Feature list:
 - View all users that are following you, and that you are following.
 - Post text-based status updates.
 
+I have partially implemented sharing images with status updates, but this is non-functional at the time of submission. The causes for this are detailed in the challenges section.
+
 ## Challenges
 
 Whilst I have made use of other cloud platforms before, this was the first time that I have made use of Microsoft Azure, or function-based applications in a big project. 
@@ -46,8 +48,11 @@ Cross-Origin Resource Sharing is a security mechanism that is used to restrict w
 
 Much of the information on using Azure Functions, especially from Microsoft, uses C# .NET as the programming language. As I was using NodeJS (required for this coursework), this often made it difficult to find resources on how to use Functions. This was especially the case for information from a reputable source (i.e Microsoft). 
 
+My submission contains partially implemented, broken function that would have enabled users to post images and videos in their status updates. The obvious way to store this multimedia data is in blob storage. However, I could not find a way when searching to securely upload a file into Azure blob storage when using Azure Functions with NodeJS. I thus looked for alternative methods to store this data, settling on encoding it into base64 and uploading it into Azure Tables. I was unable to get this to work in time to submit this coursework on time.
+
+
 ## Time Taken
 
-During this assesment, I recorded a total of 54 hours working on the tasks given. This includes some, but not all of the time that I spent researching how to the Azure platform.
+During this assessment, I recorded a total of 54 hours working on the tasks given. This includes some, but not all of the time that I spent researching how to the Azure platform.
 
 During this coursework, I have learnt a lot about using serverless applications and Azure. It has also been an opportunity for me to learn more about writing frontend applications in JavaScript and making use of state libraries.

@@ -9,7 +9,7 @@
         <div v-if="loading" class="loading">
           Loading tweets...
         </div>
-        <div v-if="error" class="error">Error: {{ error }}</div>
+        <div v-if="error" class="alert alert-danger">Error: {{ error }}</div>
         <Tweet
           v-for="tweet in tweets"
           :key="tweet.id"
