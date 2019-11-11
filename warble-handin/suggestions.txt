@@ -1,0 +1,5 @@
+It would be great if you could either give more guidance on using NodeJS with Azure Functions, or allow us to use the recommended C# .NET and the SDK it provides for functions.
+
+Azure has been quite buggy in comparison to other platforms and this has hindered me significantly when working on this coursework. It would be good to see a different platform.
+
+Further instruction on setting up the subscription would be useful too.

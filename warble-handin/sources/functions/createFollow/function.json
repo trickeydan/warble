@@ -1,0 +1,56 @@
+﻿{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "table",
+      "name": "followersOutTable",
+      "tableName": "followers",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    },
+    {
+      "type": "table",
+      "name": "userInTable",
+      "tableName": "users",
+      "partitionKey": "part",
+      "rowKey": "{username}",
+      "take": 50,
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "followsInTable",
+      "tableName": "users",
+      "partitionKey": "part",
+      "rowKey": "{follows}",
+      "take": 50,
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "existsInTable",
+      "tableName": "followers",
+      "take": 50,
+      "filter": "username eq '{username}' and follows eq '{follows}'",
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}

@@ -1,0 +1,36 @@
+﻿{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "table",
+      "name": "tweetTable",
+      "tableName": "tweets",
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "followingTable",
+      "tableName": "followers",
+      "filter": "username eq '{username}'",
+      "connection": "AzureWebJobsStorage",
+      "direction": "in",
+      "take": 500
+    }
+  ],
+  "disabled": false
+}
